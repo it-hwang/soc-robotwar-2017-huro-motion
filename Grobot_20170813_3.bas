@@ -22,11 +22,6 @@ DIM 자이로ONOFF AS BYTE
 DIM 스마트걷기횟수 AS BYTE
 DIM 스마트걷기종료 AS BYTE
 
-DIM 스마트걷기자세 AS BYTE
-CONST 스마트걷기자세_기본자세 = 0
-CONST 스마트걷기자세_왼발 = 1
-CONST 스마트걷기자세_오른발 = 2
-
 PTP SETON 				'단위그룹별 점대점동작 설정
 PTP ALLON				'전체모터 점대점 동작 설정
 
@@ -39,7 +34,6 @@ DIR G6D,0,1,1,0,1,0		'모터18~23번 그룹사용 설정
 '초기 걷기 설정
 스마트걷기종료=0
 보행순서 = 0
-스마트걷기자세 = 스마트걷기자세_기본자세
 
 SERVO_SPEED = DEFAULT_SPEED
 
@@ -4184,8 +4178,13 @@ RESET_SERVO_SPEED:
 	GOSUB RECEIVE_DATA
     SERVO_ID = RECEIVED_DATA
     
-	SERVO_VALUE = MOTORIN(SERVO_ID)
+    모터값얻기_LOOP:
+	    SERVO_VALUE = MOTORIN(SERVO_ID)
+	    IF SERVO_VALUE = 0 THEN
+	    	GOTO 모터값얻기_LOOP
+	    ENDIF
 	ETX 9600, SERVO_VALUE
+	
     RETURN
     
 
@@ -4196,11 +4195,6 @@ RESET_SERVO_SPEED:
 	' 다시 사용하고싶다면 로봇을 껐다키길 바란다.
 	MOTOROFF G6B
 	MOTOROFF G6C
-	RETURN
-
-
-횟수얻기:
-	ERX  9600, 횟수,  횟수얻기
 	RETURN
 
 
