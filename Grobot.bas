@@ -207,7 +207,38 @@ Leg_motor_mode5:
     MOVE G6C,100,  100,  100, 100, 100, 100
     WAIT
     RETURN
-    
+
+
+
+
+
+    MOVE G6A,100,  92, 125, 100, 100
+    MOVE G6D,100,  92, 125, 100, 100
+    MOVE G6B,186,  100,  10, 100,    ,
+    MOVE G6C,186,  100,  10, 100,    ,
+    WAIT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     '**********************************************
     ' 머리
     '**********************************************
@@ -306,14 +337,6 @@ Leg_motor_mode5:
     MOVE G6C,   ,    ,    ,    ,    ,  20	'상하
     WAIT
     RETURN
-
-
-
-    MOVE G6A,100,  92, 125, 100, 100, 100
-    MOVE G6D,100,  92, 125, 100, 100
-    MOVE G6B,100,  30,  80, 100,    , 100
-    MOVE G6C,100,  30,  80, 100,    , 100
-    WAIT
 
     '**********************************************
     ' 멈춘 자세
@@ -564,7 +587,7 @@ Leg_motor_mode5:
 
 오른쪽옆으로_중:
     GOSUB 자이로OFF
-    GOSUB Leg_motor_mode5
+   	GOSUB Leg_motor_mode5
     SPEED 10
     MOVE G6A,100,  92, 125, 100, 107, 	
     MOVE G6D, 90, 106,  99, 112, 105, 	
@@ -1997,12 +2020,14 @@ Leg_motor_mode5:
 
     ' A = 0: 왼쪽발이 들어올려진 상태
     ' A = 1: 오른쪽 발이 들어올려진 상태
+    SPEED 5
     IF A = 0 THEN
         GOSUB 빠른전진보행2_시작_왼쪽
     ELSE
         GOSUB 빠른전진보행2_시작_오른쪽
     ENDIF
 
+    SPEED 12
     B = 횟수 - 1
     FOR I = 1 TO B
         IF A = 0 THEN
@@ -2015,6 +2040,7 @@ Leg_motor_mode5:
         A = 1 - A
     NEXT I
 
+    SPEED 8
     IF A = 0 THEN
         GOSUB 빠른전진보행2_반복_왼쪽_1
         GOSUB 빠른전진보행2_반복_왼쪽_2_끝
@@ -2024,6 +2050,7 @@ Leg_motor_mode5:
     ENDIF
 
     GOSUB 자이로ON
+    HIGHSPEED SETOFF
 
     RETURN
 
@@ -4292,7 +4319,7 @@ Leg_motor_mode5:
     WAIT
 
     DELAY 500
-    
+
     HIGHSPEED SETON
     SPEED 5
 
@@ -4319,24 +4346,31 @@ Leg_motor_mode5:
 
 빨간계단_구르기:
     GOSUB 자이로OFF
+    HIGHSPEED SETON
+    SPEED 10
 
-    SPEED 15
     MOVE G6B,150,  40,  90, 100, 100, 100
     MOVE G6C,150,  40,  90, 100, 100,  10
     WAIT
 
+    HIGHSPEED SETOFF
+    SPEED 15
+
     MOVE G6A,100, 102,  97, 133,  97, 100
     MOVE G6D,100, 102,  97, 133,  97, 100
     WAIT
-    
+
     MOVE G6A,100, 102,  97, 163,  97, 100
     MOVE G6D,100, 102,  97, 163,  97, 100
     WAIT
 
-    MOVE G6A,102,  60, 158, 130,  97, 100
-    MOVE G6D,102,  60, 158, 130,  97, 100
-    WAIT
-    
+    'MOVE G6A,102,  60, 158, 130,  97, 100
+    'MOVE G6D,102,  60, 158, 130,  97, 100
+    'WAIT
+
+    HIGHSPEED SETON
+    SPEED 10
+
     DELAY 200
 
     MOVE G6A, 100, 50,  120, 10, 100, 100
@@ -4345,26 +4379,26 @@ Leg_motor_mode5:
     MOVE G6D, 100, 50,  120, 12, 100, 100
     WAIT
 
-    SPEED 15
     MOVE G6B,187,  40,  80, 100, 100, 100
-    MOVE G6C,190,  45,  80, 100, 100,  30
+    MOVE G6C,187,  40,  80, 100, 100,  30
     WAIT
 
     DELAY 500
-    
+
     MOVE G6A,111,  26, 150,  14, 175, 100
     MOVE G6D,111,  16, 160,  14, 175, 100
-    MOVE G6C,186,  40,  90, 100, 100,  10
+    MOVE G6C,186,  40,  90, , , 10
+    MOVE G6B,186,  40,  90,
     WAIT
 
     DELAY 500
-    
+
     MOVE G6A,100,  26, 166,  14, 110, 100
     MOVE G6D,100,  26, 166,  14, 110, 100
     WAIT
     '*************************************************
     '수정중
-    
+
     MOVE G6A,103,  20,  71, 130, 115, 100
     MOVE G6D,103,  20,  71, 130, 115, 100
     WAIT
@@ -4373,7 +4407,7 @@ Leg_motor_mode5:
     MOVE G6D,103,  70,  150, 90, 115, 100
     WAIT
 
-    MOVE G6B,183,  100,  100, 100, 100, 100
+    MOVE G6B,186,  100,  100, 100, 100, 100
     MOVE G6C,186,  100,  100, 100, 100,  10
     WAIT
 
@@ -4385,38 +4419,39 @@ Leg_motor_mode5:
     MOVE G6C,100,  150, 150, 100, 100,  10
     WAIT
 
-	SPEED 8
+    HIGHSPEED SETOFF
+    SPEED 8
 
-    MOVE G6B,180,  150, 150, 100, 100, 100
-    MOVE G6C,180,  150, 150, 100, 100,  10
+    MOVE G6B,186,  150, 150, 100, 100, 100
+    MOVE G6C,186,  150, 150, 100, 100,  10
+    MOVE G6A, 81, 125,  51,  52, 169, 100
+    MOVE G6D, 81, 125,  51,  52, 169, 100
     WAIT
 
-    MOVE G6A, 91, 131,  40,  66, 110, 100
-    MOVE G6D, 91, 131,  40,  66, 110, 100
+    MOVE G6A, 61, 129,  64,  52, 162, 100
+    MOVE G6D, 61, 129,  64,  52, 162, 100
     WAIT
 
-    MOVE G6A, 87, 165,  24,  66, 116, 100
-    MOVE G6D, 87, 165,  24,  66, 118, 100
+    MOVE G6A, 62, 140,  69,  60, 137, 100
+    MOVE G6D, 62, 140,  69,  60, 137, 100
     WAIT
 
-    MOVE G6B,183,  45,  80, 100, 100, 100
+    HIGHSPEED SETON
+    SPEED 10
+
+    MOVE G6B,186,  40,  80, 100, 100, 100
     MOVE G6C,186,  40,  90, 100, 100,  30
     WAIT
 
-    MOVE G6A, 90, 150,  54,  74, 108, 100
-    MOVE G6D, 90, 150,  54,  74, 108, 100
+    GOSUB 자이로ON
+    GOSUB Leg_motor_mode3
+
+    MOVE G6A, 77, 133,  60, 113, 128, 100
+    MOVE G6D, 77, 133,  60, 113, 128, 100
     WAIT
 
-    MOVE G6A, 90, 130,  74,  92, 108, 100
-    MOVE G6D, 90, 130,  74,  92, 108, 100
-    WAIT
-
-    MOVE G6A, 90, 110,  94,  97, 104, 100
-    MOVE G6D, 90, 110,  94,  97, 104, 100
-    WAIT
-
+    HIGHSPEED SETOFF
     GOSUB 기본자세
-	GOSUB 자이로ON
 
     RETURN	
 
@@ -4584,67 +4619,65 @@ Leg_motor_mode5:
 
     RETURN
 
-빨간계단내리기:
+빨간계단_내리기:
     GOSUB 자이로OFF
+    SPEED 12
 
-    SPEED 4
     MOVE G6A,101, 167,  21, 123,  99, 100
     MOVE G6B,100,  30,  80, 100, 100, 100
     MOVE G6C,100,  30,  80, 100, 100, 100
     MOVE G6D,102, 165,  21, 127,  99, 100
     WAIT
 
-    SPEED 6
+    SPEED 15
+
     MOVE G6B, 17,  30,  80, 100, 100, 101
     MOVE G6C, 17,  30,  80, 100, 100, 101
     WAIT
 
-    SPEED 4
     MOVE G6A,101, 167,  20,  69,  99, 100
     MOVE G6D,103, 164,  21,  74,  99, 100
     WAIT
 
-    SPEED 6
+    HIGHSPEED SETON
+    SPEED 8
+
     MOVE G6D,104,  92,  21, 148,  98, 100
     WAIT
 
-    SPEED 6
     MOVE G6D,104,  30,  58, 171,  98, 100
     WAIT
 
-    SPEED 10
     MOVE G6D,104,  62, 167, 125,  98, 100
-
     WAIT
 
-    SPEED 10
     MOVE G6D,104,  98, 166,  83,  98, 100
     WAIT
 
-    SPEED 6
     MOVE G6A,102,  82,  20, 152,  99, 100
     WAIT
 
-    SPEED 6
     MOVE G6A, 95,  12, 114, 165, 103, 100
     WAIT
 
-    SPEED 10
     MOVE G6A,101,  90, 119, 146, 105, 100
     WAIT
 
-    SPEED 10
     MOVE G6A,104,  98, 166,  83,  98, 100
     WAIT
 
-    SPEED 10
     MOVE G6A,104,  12, 166,  83,  98, 100
     MOVE G6D,104,  13, 166,  83,  98, 100
     WAIT
 
+    HIGHSPEED SETOFF
+    SPEED 10
+
     MOVE G6A,104, 167,  23,  83,  98, 100
     MOVE G6D,104, 165,  23,  85,  98, 100
     WAIT
+
+    GOSUB Leg_motor_mode3
 
     MOVE G6A,104, 167,  21, 120,  98, 100
     MOVE G6B, 43,  32,  80, 100, 100, 101
@@ -4652,30 +4685,9 @@ Leg_motor_mode5:
     MOVE G6D,104, 167,  21, 120,  98, 100
     WAIT
 
-
-    MOVE G6B, 99, 111,  10, 100, 100, 102
-    MOVE G6C, 99, 111,  10, 100, 100, 102
-    WAIT
-
-    MOVE G6B,153,  62,  66, 100, 100, 101
-    MOVE G6C,153,  62,  66, 100, 100, 101
-    WAIT
-
-    MOVE G6A,100,  92, 125, 100, 100
-    MOVE G6D,100,  92, 125, 100, 100
-    WAIT
-
-    MOVE G6B,100,  30,  80, 100,    ,
-    MOVE G6C,100,  30,  80, 100,    ,
-    WAIT	
-
-    GOSUB 자이로ON
+    GOSUB 기본자세	
 
     RETURN
-
-
-
-
 
     '**********************************************
     ' 행동
@@ -4873,6 +4885,52 @@ Leg_motor_mode5:
     HIGHSPEED SETOFF
     RETURN
 
+왼쪽회전_약3:
+    GOSUB 자이로OFF
+    
+    GOSUB Leg_motor_mode1
+
+    'GOSUB 기본자세
+    'WAIT
+
+    MOVE G6D,100,  90, 125, 100, 100
+    MOVE G6A,100,  90, 125, 100, 100
+    WAIT
+    DELAY 20
+    
+    HIGHSPEED SETON
+    SPEED 5
+    
+    'MOVE G6A, 104,  50, 138, 98, 100,
+	'MOVE G6D,  96, 113, 143, 87, 100,
+    
+    'MOVE G6A, 104,  50, 138, 98, 100,
+	'MOVE G6D,  96, 113, 143, 87, 100,
+
+    'MOVE G6A,101,  76, 116, 110,  99,
+	'MOVE G6D,101, 109, 119,  95,  99,
+    
+    'MOVE G6A, 104,  63, 128, 100, 100
+    'MOVE G6D,  96, 110, 134,  92, 100
+
+    MOVE G6D,100,  60, 125, 100, 100
+    MOVE G6A,92,  105, 125, 100, 100
+
+    WAIT
+    DELAY 20
+	
+	SPEED 10
+    MOVE G6D,100,  90, 125, 100, 100
+    MOVE G6A,100,  90, 125, 100, 100
+    WAIT
+    
+    'GOSUB 기본자세
+    'WAIT
+
+	HIGHSPEED SETOFF
+    DELAY 100
+    GOSUB 자이로ON
+    RETURN
 
 
 
@@ -4914,6 +4972,52 @@ Leg_motor_mode5:
     HIGHSPEED SETOFF
     RETURN
 
+오른쪽회전_약3:
+    GOSUB 자이로OFF
+    
+    GOSUB Leg_motor_mode1
+
+    'GOSUB 기본자세
+    'WAIT
+
+    MOVE G6A,100,  90, 125, 100, 100
+    MOVE G6D,100,  90, 125, 100, 100
+    WAIT
+    DELAY 20
+    
+    HIGHSPEED SETON
+    SPEED 5
+    
+    'MOVE G6A, 104,  50, 138, 98, 100,
+	'MOVE G6D,  96, 113, 143, 87, 100,
+    
+    'MOVE G6A, 104,  50, 138, 98, 100,
+	'MOVE G6D,  96, 113, 143, 87, 100,
+
+    'MOVE G6A,101,  76, 116, 110,  99,
+	'MOVE G6D,101, 109, 119,  95,  99,
+    
+    'MOVE G6A, 104,  63, 128, 100, 100
+    'MOVE G6D,  96, 110, 134,  92, 100
+
+    MOVE G6A,100,  60, 125, 100, 100
+    MOVE G6D,92,  105, 125, 100, 100
+
+    WAIT
+    DELAY 20
+	
+	SPEED 10
+    MOVE G6A,100,  90, 125, 100, 100
+    MOVE G6D,100,  90, 125, 100, 100
+    WAIT
+    
+    'GOSUB 기본자세
+    'WAIT
+
+	HIGHSPEED SETOFF
+    DELAY 100
+    GOSUB 자이로ON
+    RETURN
 
     '**********************************************
     ' 기타
@@ -4957,6 +5061,12 @@ RESET_SERVO_SPEED:
     SERVO_VALUE = RECEIVED_DATA
 
     SERVO SERVO_ID, SERVO_VALUE
+    RETURN
+
+
+모터값조절_대기:
+    MOVE24 ,
+    WAIT
     RETURN
 
 
@@ -5011,7 +5121,7 @@ RESET_SERVO_SPEED:
     GOSUB 빨간계단
     횟수 = 16
     GOSUB 전진보행
-    GOSUB 빨간계단내리기
+    GOSUB 빨간계단_내리기
 
     '지뢰
     횟수 = 30
@@ -5079,13 +5189,17 @@ RESET_SERVO_SPEED:
 
 TEST:
     'GOSUB 기본자세
-   ' 횟수 = 4
-   ' GOSUB 전진종종걸음_안정화3
-   ' 횟수 = 4
+    ' 횟수 = 4
+    ' GOSUB 전진종종걸음_안정화3
+    ' 횟수 = 4
     'GOSUB 전진종종걸음_계단부딪히기
     'GOSUB 허들
     'GOSUB 지뢰보행2
+    
     'GOSUB 자이로OFF
+    'GOSUB 기본자세
+    'END
+    
     'GOSUB 계단오르기3
     'DELAY 500
     'GOSUB 계단오르기3
@@ -5097,15 +5211,15 @@ TEST:
     'GOSUB 신걷기제작프로젝트
     'GOSUB 경기장2017_주행테스트
 
-	' 빨간계단
-    횟수 = 4
-    GOSUB 전진종종걸음_안정화3
-    횟수 = 4
-    GOSUB 전진종종걸음_계단부딪히기
-    GOSUB 빨간계단_구르기
-    DELAY 500
-    GOSUB 빨간계단내리기
-
+    '빨간계단
+    '횟수 = 4
+    'GOSUB 전진종종걸음_안정화3
+    '횟수 = 4
+    'GOSUB 전진종종걸음_계단부딪히기
+    'GOSUB 빨간계단_구르기
+    'DELAY 500
+    'GOSUB 빨간계단_내리기
+    'GOSUB 골프공_차기
 
     '횟수 = 4
     'GOSUB 전진종종걸음_안정화3
@@ -5132,18 +5246,49 @@ TEST:
     'GOSUB 오른쪽회전_중4
     'GOSUB 오른쪽회전_중4
 
+	MOVE G6A,100,  92, 125, 100, 100
+    MOVE G6D,100,  92, 125, 100, 100
+    MOVE G6B,100,  30,  80, 100,    ,
+    MOVE G6C,100,  30,  80, 100,    ,
+    WAIT
+	
+	DELAY 500
 
-    'GOSUB 오른쪽회전_약2
-    'GOSUB 오른쪽회전_약2
-    'GOSUB 오른쪽회전_약2
-    'GOSUB 오른쪽회전_약2
-    'GOSUB 오른쪽회전_약2
+	'횟수 = 10
+    'GOSUB 빠른전진보행2
+    'END
 
-    'GOSUB 왼쪽회전_약2
-    'GOSUB 왼쪽회전_약2
-    'GOSUB 왼쪽회전_약2
-    'GOSUB 왼쪽회전_약2
-    'GOSUB 왼쪽회전_약2
+	FOR I = 1 TO 10
+		'GOSUB 왼쪽회전_약3
+    	GOSUB 오른쪽회전_약3
+    	'GOSUB 왼쪽옆으로_중
+    	'GOSUB 오른쪽옆으로_중
+    	'GOSUB 왼쪽옆으로_약2
+	NEXT
+	
+	
+	
+	DELAY 1000
+	
+	FOR I = 1 TO 10
+		GOSUB 왼쪽회전_약3
+    	'GOSUB 오른쪽회전_약3
+    	'GOSUB 왼쪽옆으로_중
+    	'GOSUB 오른쪽옆으로_중
+    	'GOSUB 오른쪽옆으로_약2
+	NEXT
+
+
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
+    'GOSUB 왼쪽회전_약3
 
     'GOSUB 왼쪽옆으로_중
     'GOSUB 왼쪽옆으로_중
@@ -5210,12 +5355,12 @@ TEST:
 
 
 MAIN:
-    GOTO TEST
+    'GOTO TEST
 
     ERX 9600, A, MAIN
 
     GOSUB RESET_SERVO_SPEED
-    ON A GOTO MAIN,KEY1,KEY2,KEY3,KEY4,KEY5,KEY6,KEY7,KEY8,KEY9,KEY10,KEY11,KEY12,KEY13,KEY14,KEY15,KEY16,KEY17,KEY18,KEY19,KEY20,KEY21,KEY22,KEY23,KEY24,KEY25,KEY26,KEY27,KEY28,KEY29,KEY30,KEY31,KEY32,KEY33,KEY34,KEY35,KEY36,KEY37,KEY38,KEY39,KEY40,KEY41,KEY42,KEY43,KEY44,KEY45,KEY46,KEY47,KEY48,KEY49,KEY50,KEY51,KEY52,KEY53,KEY54
+    ON A GOTO MAIN,KEY1,KEY2,KEY3,KEY4,KEY5,KEY6,KEY7,KEY8,KEY9,KEY10,KEY11,KEY12,KEY13,KEY14,KEY15,KEY16,KEY17,KEY18,KEY19,KEY20,KEY21,KEY22,KEY23,KEY24,KEY25,KEY26,KEY27,KEY28,KEY29,KEY30,KEY31,KEY32,KEY33,KEY34,KEY35,KEY36,KEY37,KEY38,KEY39,KEY40,KEY41,KEY42,KEY43,KEY44,KEY45,KEY46,KEY47,KEY48,KEY49,KEY50,KEY51,KEY52,KEY53,KEY54,KEY55
     GOTO MAIN
 
     RETURN
@@ -5237,15 +5382,20 @@ KEY1:
     GOTO MAIN
 
 KEY2:
-    GOSUB 속도조절
+    GOSUB 모터값조절_대기
     ETX  9600, 0
     GOTO MAIN
 
 KEY3:
-    GOSUB 모터값얻기
+    GOSUB 속도조절
+    ETX  9600, 0
     GOTO MAIN
 
 KEY4:
+    GOSUB 모터값얻기
+    GOTO MAIN
+
+KEY5:
     GOSUB 팔머리토크해제
     ETX  9600, 0
     GOTO MAIN
@@ -5255,19 +5405,19 @@ KEY4:
     '                    자 세   K E Y  시 작 ! ! !
     '*************************************************************
 
-KEY5:
+KEY6:
     GOSUB SET_SERVO_SPEED
     GOSUB 기본자세
     ETX  9600, 0
     GOTO MAIN
 
-KEY6:
+KEY7:
     GOSUB SET_SERVO_SPEED
     GOSUB 보드연결자세
     ETX  9600, 0
     GOTO MAIN
 
-KEY7:
+KEY8:
     GOSUB SET_SERVO_SPEED
     GOSUB 검은선확인자세
     ETX  9600, 0
@@ -5278,13 +5428,13 @@ KEY7:
     '                    머 리   K E Y  시 작 ! ! !
     '*************************************************************
 
-KEY8:
+KEY9:
     GOSUB SET_SERVO_SPEED
     GOSUB 머리정면
     ETX  9600, 0
     GOTO MAIN
 
-KEY9:
+KEY10:
     GOSUB SET_SERVO_SPEED
     GOSUB 머리바닥
     ETX  9600, 0
@@ -5295,7 +5445,7 @@ KEY9:
     '                    보 행   K E Y  시 작 ! ! !
     '*************************************************************
 
-KEY10:
+KEY11:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5304,7 +5454,7 @@ KEY10:
     ETX  9600, 0
     GOTO MAIN
 
-KEY11:
+KEY12:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5313,7 +5463,7 @@ KEY11:
     ETX  9600, 0
     GOTO MAIN
 
-KEY12:
+KEY13:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5322,7 +5472,7 @@ KEY12:
     ETX  9600, 0
     GOTO MAIN
 
-KEY13:
+KEY14:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5331,7 +5481,7 @@ KEY13:
     ETX  9600, 0
     GOTO MAIN
 
-KEY14:
+KEY15:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5340,7 +5490,7 @@ KEY14:
     ETX  9600, 0
     GOTO MAIN
 
-KEY15:
+KEY16:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5349,7 +5499,7 @@ KEY15:
     ETX  9600, 0
     GOTO MAIN
 
-KEY16:
+KEY17:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5358,7 +5508,7 @@ KEY16:
     ETX  9600, 0
     GOTO MAIN
 
-KEY17:
+KEY18:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5367,7 +5517,7 @@ KEY17:
     ETX  9600, 0
     GOTO MAIN
 
-KEY18:
+KEY19:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5376,7 +5526,7 @@ KEY18:
     ETX  9600, 0
     GOTO MAIN
 
-KEY19:
+KEY20:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5385,7 +5535,7 @@ KEY19:
     ETX  9600, 0
     GOTO MAIN
 
-KEY20:
+KEY21:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5399,68 +5549,68 @@ KEY20:
     '                  기 본 동 작   K E Y  시 작 ! ! !
     '*************************************************************
 
-KEY21:
+KEY22:
     '    GOSUB 왼쪽옆으로_약
     GOSUB 왼쪽옆으로_약2
     ETX  9600, 0
     GOTO MAIN
 
-KEY22:
+KEY23:
     GOSUB 왼쪽옆으로_중
     ETX  9600, 0
     GOTO MAIN
 
-KEY23:
+KEY24:
     '    GOSUB 왼쪽옆으로_강
     ETX  9600, 0
     GOTO MAIN
 
-KEY24:
+KEY25:
     '    GOSUB 오른쪽옆으로_약
     GOSUB 오른쪽옆으로_약2
     ETX  9600, 0
     GOTO MAIN
 
-KEY25:
+KEY26:
     GOSUB 오른쪽옆으로_중
     ETX  9600, 0
     GOTO MAIN
 
-KEY26:
+KEY27:
     '    GOSUB 오른쪽옆으로_강
     ETX  9600, 0
     GOTO MAIN
 
-KEY27:
+KEY28:
     '    GOSUB 왼쪽회전_약
     GOSUB 왼쪽회전_중
     ETX  9600, 0
     GOTO MAIN
 
-KEY28:
+KEY29:
     '    GOSUB 왼쪽회전_중
     GOSUB 왼쪽회전_중2
     ETX  9600, 0
     GOTO MAIN
 
-KEY29:
+KEY30:
     GOSUB 왼쪽회전_강
     ETX  9600, 0
     GOTO MAIN
 
-KEY30:
+KEY31:
     '    GOSUB 오른쪽회전_약
     GOSUB 오른쪽회전_중
     ETX  9600, 0
     GOTO MAIN
 
-KEY31:
+KEY32:
     '    GOSUB 오른쪽회전_중
     GOSUB 오른쪽회전_중2
     ETX  9600, 0
     GOTO MAIN
 
-KEY32:
+KEY33:
     GOSUB 오른쪽회전_강
     ETX  9600, 0
     GOTO MAIN
@@ -5470,73 +5620,73 @@ KEY32:
     '                    장 애 물   K E Y  시 작 ! ! !
     '*************************************************************
 
-KEY33:
+KEY34:
     GOSUB 빨간계단_구르기
     '회전 및 걸음 수 자리
     ETX 9600, 0
     GOTO MAIN
 
-KEY34:
-    GOSUB 빨간계단내리기
-    ETX 9600, 0
-    GOTO MAIN	
-
 KEY35:
-    GOSUB 지뢰보행
+    GOSUB 빨간계단_내리기
     ETX 9600, 0
     GOTO MAIN
 
 KEY36:
-    GOSUB 허들
+    GOSUB 지뢰보행
     ETX 9600, 0
     GOTO MAIN
 
 KEY37:
-    GOSUB 계단오르기
+    GOSUB 허들
     ETX 9600, 0
     GOTO MAIN
 
 KEY38:
-    'GOSUB 초록다리
+    GOSUB 계단오르기
     ETX 9600, 0
     GOTO MAIN
 
 KEY39:
-    GOSUB 계단내리기
+    'GOSUB 초록다리
     ETX 9600, 0
     GOTO MAIN
 
 KEY40:
-    'GOSUB 골프공1
+    GOSUB 계단내리기
     ETX 9600, 0
     GOTO MAIN
 
 KEY41:
-    GOSUB 골프공_차기
+    'GOSUB 골프공1
     ETX 9600, 0
     GOTO MAIN
 
 KEY42:
-    'GOSUB 골프공마지막
+    GOSUB 골프공_차기
     ETX 9600, 0
     GOTO MAIN
 
 KEY43:
-    GOSUB 함정오르기
+    'GOSUB 골프공마지막
     ETX 9600, 0
     GOTO MAIN
 
 KEY44:
-    GOSUB 함정
+    GOSUB 함정오르기
     ETX 9600, 0
     GOTO MAIN
 
 KEY45:
-    'GOSUB 수평바리케이트
+    GOSUB 함정
     ETX 9600, 0
     GOTO MAIN
 
 KEY46:
+    'GOSUB 수평바리케이트
+    ETX 9600, 0
+    GOTO MAIN
+
+KEY47:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5545,7 +5695,7 @@ KEY46:
     ETX  9600, 0
     GOTO MAIN
 
-KEY47:
+KEY48:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5555,7 +5705,7 @@ KEY47:
     GOTO MAIN
 
 
-KEY48:
+KEY49:
     ETX  9600, 255
     GOSUB RECEIVE_DATA
     횟수 = RECEIVED_DATA
@@ -5564,45 +5714,32 @@ KEY48:
     ETX  9600, 0
     GOTO MAIN
 
-
-    'KEY11:
-    '    ERX 9600, 스마트걷기횟수, KEY11
-    '    GOSUB 스마트걷기_1
-    '    ETX 9600,64
-    '    GOTO MAIN
-    '
-    'KEY12:
-    '    GOSUB 스마트걷기에서기본으로
-    '    ETX 9600,64
-    '    GOTO MAIN
-
-KEY49:
+KEY50:
     GOSUB 왼쪽회전_약2
     ETX  9600, 0
     GOTO MAIN
 
-KEY50:
+KEY51:
     GOSUB 왼쪽회전_중2
     ETX  9600, 0
     GOTO MAIN
 
-KEY51:
+KEY52:
     GOSUB 왼쪽회전_강2
     ETX  9600, 0
     GOTO MAIN
 
-KEY52:
+KEY53:
     GOSUB 오른쪽회전_약2
     ETX  9600, 0
     GOTO MAIN
 
-KEY53:
+KEY54:
     GOSUB 오른쪽회전_중2
     ETX  9600, 0
     GOTO MAIN
 
-KEY54:
+KEY55:
     GOSUB 오른쪽회전_강2
     ETX  9600, 0
     GOTO MAIN
-
