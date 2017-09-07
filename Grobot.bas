@@ -4889,47 +4889,124 @@ Leg_motor_mode5:
     GOSUB 자이로OFF
     
     GOSUB Leg_motor_mode1
+    'MOTORMODE G6A,1,1,3,3,3
+    'MOTORMODE G6D,1,1,3,3,3
 
     'GOSUB 기본자세
     'WAIT
-
-    MOVE G6D,100,  90, 125, 100, 100
-    MOVE G6A,100,  90, 125, 100, 100
+    'DELAY 1000
+    
+	HIGHSPEED SETOFF
+	SPEED 6
+    MOVE G6D, 101, 94, 125, 100, 100
+    MOVE G6A, 99, 94, 125, 100, 100
     WAIT
-    DELAY 20
-    
-    HIGHSPEED SETON
-    SPEED 5
-    
-    'MOVE G6A, 104,  50, 138, 98, 100,
-	'MOVE G6D,  96, 113, 143, 87, 100,
-    
-    'MOVE G6A, 104,  50, 138, 98, 100,
-	'MOVE G6D,  96, 113, 143, 87, 100,
 
-    'MOVE G6A,101,  76, 116, 110,  99,
-	'MOVE G6D,101, 109, 119,  95,  99,
-    
-    'MOVE G6A, 104,  63, 128, 100, 100
-    'MOVE G6D,  96, 110, 134,  92, 100
-
-    MOVE G6D,100,  60, 125, 100, 100
-    MOVE G6A,92,  105, 125, 100, 100
-
+	'HIGHSPEED SETON
+	SPEED 15
+    MOVE G6D,100,  72
+    MOVE G6A,100,  112
     WAIT
-    DELAY 20
-	
-	SPEED 10
-    MOVE G6D,100,  90, 125, 100, 100
-    MOVE G6A,100,  90, 125, 100, 100
+
+    MOVE G6D,100,  82, , 110
+    MOVE G6A,100,  102, , 90
     WAIT
-    
-    'GOSUB 기본자세
-    'WAIT
+    GOSUB Leg_motor_mode2
+    DELAY 100
 
 	HIGHSPEED SETOFF
-    DELAY 100
+	SPEED 5
+    MOVE G6D,100,  92, 125, 100, 100
+    MOVE G6A,100,  92, 125, 100, 100
+    WAIT
+
+    'MOVE G6A,100,  92, 125, 100, 100
+    'MOVE G6D,100,  92, 125, 100, 100
+    'WAIT
+    GOSUB Leg_motor_mode1
+    DELAY 500
+    GOSUB Leg_motor_mode2
     GOSUB 자이로ON
+    
+    RETURN
+
+왼쪽회전_약4:
+    GOSUB 자이로OFF
+    
+    GOSUB Leg_motor_mode1
+    'MOTORMODE G6A,1,1,3,3,3
+    'MOTORMODE G6D,1,1,3,3,3
+
+    'GOSUB 기본자세
+    'WAIT
+    'DELAY 1000
+    
+	HIGHSPEED SETOFF
+	SPEED 6
+    MOVE G6D, 101, 94, 125, 100, 100
+    MOVE G6A, 99, 94, 125, 100, 100
+    WAIT
+
+	'HIGHSPEED SETON
+	SPEED 15
+    MOVE G6D,100,  62
+    MOVE G6A,100,  122
+    WAIT
+
+    MOVE G6D,100,  72, , 120
+    MOVE G6A,100,  112, , 80
+    WAIT
+    GOSUB Leg_motor_mode2
+    DELAY 100
+
+	HIGHSPEED SETOFF
+	SPEED 5
+    MOVE G6D,100,  92, 125, 100, 100
+    MOVE G6A,100,  92, 125, 100, 100
+    WAIT
+
+    'MOVE G6A,100,  92, 125, 100, 100
+    'MOVE G6D,100,  92, 125, 100, 100
+    'WAIT
+    GOSUB Leg_motor_mode1
+    DELAY 500
+    GOSUB Leg_motor_mode2
+    GOSUB 자이로ON
+    
+    RETURN
+
+왼쪽회전_약5:
+    GOSUB 자이로OFF
+    
+    GOSUB Leg_motor_mode1
+	HIGHSPEED SETOFF
+	SPEED 6
+    MOVE G6D, 101, 94, 125, 100, 100
+    MOVE G6A, 99, 94, 125, 100, 100
+    WAIT
+
+	SPEED 15
+    MOVE G6D,100,  72
+    MOVE G6A,100,  112
+    WAIT
+
+    MOVE G6D,100,  87, , 105
+    MOVE G6A,100,  97, , 95
+    WAIT
+    GOSUB Leg_motor_mode3
+    DELAY 100
+
+	HIGHSPEED SETOFF
+	SPEED 5
+    MOVE G6D,100,  92, 125, 100, 100
+    MOVE G6A,100,  92, 125, 100, 100
+    WAIT
+
+    GOSUB Leg_motor_mode1
+    DELAY 500
+    GOSUB Leg_motor_mode2
+    GOSUB 자이로ON
+    
     RETURN
 
 
@@ -4976,47 +5053,113 @@ Leg_motor_mode5:
     GOSUB 자이로OFF
     
     GOSUB Leg_motor_mode1
+    'MOTORMODE G6A,1,1,3,3,3
+    'MOTORMODE G6D,1,1,3,3,3
 
     'GOSUB 기본자세
     'WAIT
-
-    MOVE G6A,100,  90, 125, 100, 100
-    MOVE G6D,100,  90, 125, 100, 100
+    'DELAY 1000
+    
+	HIGHSPEED SETOFF
+	SPEED 6
+    MOVE G6A, 101, 94, 125, 100, 100
+    MOVE G6D, 99, 94, 125, 100, 100
     WAIT
-    DELAY 20
-    
-    HIGHSPEED SETON
-    SPEED 5
-    
-    'MOVE G6A, 104,  50, 138, 98, 100,
-	'MOVE G6D,  96, 113, 143, 87, 100,
-    
-    'MOVE G6A, 104,  50, 138, 98, 100,
-	'MOVE G6D,  96, 113, 143, 87, 100,
 
-    'MOVE G6A,101,  76, 116, 110,  99,
-	'MOVE G6D,101, 109, 119,  95,  99,
-    
-    'MOVE G6A, 104,  63, 128, 100, 100
-    'MOVE G6D,  96, 110, 134,  92, 100
-
-    MOVE G6A,100,  60, 125, 100, 100
-    MOVE G6D,92,  105, 125, 100, 100
-
+	'HIGHSPEED SETON
+	SPEED 15
+    MOVE G6A,100,  72
+    MOVE G6D,100,  112
     WAIT
-    DELAY 20
-	
-	SPEED 10
-    MOVE G6A,100,  90, 125, 100, 100
-    MOVE G6D,100,  90, 125, 100, 100
+
+    MOVE G6A,100,  82, , 110
+    MOVE G6D,100,  102, , 90
     WAIT
-    
-    'GOSUB 기본자세
-    'WAIT
+    GOSUB Leg_motor_mode2
+    DELAY 100
 
 	HIGHSPEED SETOFF
-    DELAY 100
+	SPEED 5
+    MOVE G6A,100,  92, 125, 100, 100
+    MOVE G6D,100,  92, 125, 100, 100
+    WAIT
+
+    'MOVE G6A,100,  92, 125, 100, 100
+    'MOVE G6D,100,  92, 125, 100, 100
+    'WAIT
+    GOSUB Leg_motor_mode1
+    DELAY 500
+    GOSUB Leg_motor_mode2
     GOSUB 자이로ON
+    
+    RETURN
+
+오른쪽회전_약4:
+    GOSUB 자이로OFF
+    
+    GOSUB Leg_motor_mode1
+	HIGHSPEED SETOFF
+	SPEED 6
+    MOVE G6A, 101, 94, 125, 100, 100
+    MOVE G6D, 99, 94, 125, 100, 100
+    WAIT
+
+	SPEED 15
+    MOVE G6A,100,  62
+    MOVE G6D,100,  122
+    WAIT
+
+    MOVE G6A,100,  72, , 120
+    MOVE G6D,100,  112, , 80
+    WAIT
+    GOSUB Leg_motor_mode2
+    DELAY 100
+
+	HIGHSPEED SETOFF
+	SPEED 5
+    MOVE G6A,100,  92, 125, 100, 100
+    MOVE G6D,100,  92, 125, 100, 100
+    WAIT
+
+    GOSUB Leg_motor_mode1
+    DELAY 500
+    GOSUB Leg_motor_mode2
+    GOSUB 자이로ON
+    
+    RETURN
+
+오른쪽회전_약5:
+    GOSUB 자이로OFF
+    
+    GOSUB Leg_motor_mode1
+	HIGHSPEED SETOFF
+	SPEED 6
+    MOVE G6A, 101, 94, 125, 100, 100
+    MOVE G6D, 99, 94, 125, 100, 100
+    WAIT
+
+	SPEED 15
+    MOVE G6A,100,  72
+    MOVE G6D,100,  112
+    WAIT
+
+    MOVE G6A,100,  87, , 105
+    MOVE G6D,100,  97, , 95
+    WAIT
+    GOSUB Leg_motor_mode3
+    DELAY 100
+
+	HIGHSPEED SETOFF
+	SPEED 5
+    MOVE G6A,100,  92, 125, 100, 100
+    MOVE G6D,100,  92, 125, 100, 100
+    WAIT
+
+    GOSUB Leg_motor_mode1
+    DELAY 500
+    GOSUB Leg_motor_mode2
+    GOSUB 자이로ON
+    
     RETURN
 
     '**********************************************
@@ -5260,7 +5403,9 @@ TEST:
 
 	FOR I = 1 TO 10
 		'GOSUB 왼쪽회전_약3
+    	GOSUB 오른쪽회전_약5
     	GOSUB 오른쪽회전_약3
+    	GOSUB 오른쪽회전_약4
     	'GOSUB 왼쪽옆으로_중
     	'GOSUB 오른쪽옆으로_중
     	'GOSUB 왼쪽옆으로_약2
@@ -5271,7 +5416,9 @@ TEST:
 	DELAY 1000
 	
 	FOR I = 1 TO 10
+		GOSUB 왼쪽회전_약5
 		GOSUB 왼쪽회전_약3
+		GOSUB 왼쪽회전_약4
     	'GOSUB 오른쪽회전_약3
     	'GOSUB 왼쪽옆으로_중
     	'GOSUB 오른쪽옆으로_중
